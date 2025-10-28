@@ -1,0 +1,140 @@
+/* src/components/Hero/Hero.module.css */
+
+.heroContainer {
+  position: relative; /* Needed for the background grid */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 90vh; /* Make it take up most of the screen */
+  padding: 2rem;
+  overflow: hidden; /* Hide grid overflow */
+}
+
+.heroContent {
+  z-index: 2; /* Make sure content is above the grid */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  max-width: 800px;
+  
+  /* Cool gradient text effect */
+  background: linear-gradient(90deg, 
+    var(--color-text-primary), 
+    var(--color-accent)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+  max-width: 600px;
+}
+
+.heroButtons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+/* Base button style */
+.btnPrimary, .btnSecondary {
+  padding: 0.8rem 1.8rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-heading);
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+/* Primary Button (Blue) */
+.btnPrimary {
+  background-color: var(--color-accent);
+  color: var(--color-bg-dark);
+  border: 2px solid var(--color-accent);
+}
+
+.btnPrimary:hover {
+  background-color: transparent;
+  color: var(--color-accent);
+  box-shadow: 0 0 20px var(--color-accent); /* Glow */
+}
+
+/* Secondary Button (Outline) */
+.btnSecondary {
+  background-color: transparent;
+  color: var(--color-text-primary);
+  border: 2px solid var(--color-text-secondary);
+}
+
+.btnSecondary:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: 0 0 20px rgba(0, 180, 216, 0.5); /* Fainter glow */
+}
+
+
+/* --- Techy Glowing Grid Background --- */
+.glowingGrid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  
+  /* The grid */
+  background-image: 
+    linear-gradient(to right, rgba(0, 180, 216, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 180, 216, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  
+  /* Add a fading mask */
+  mask-image: radial-gradient(
+    ellipse 80% 50% at 50% 40%, 
+    black 60%, 
+    transparent 100%
+  );
+  
+  /* Animation */
+  animation: panGrid 20s linear infinite;
+}
+
+@keyframes panGrid {
+  0% { background-position: 0 0; }
+  100% { background-position: 50px 50px; }
+}
+/* src/components/Hero/Hero.module.css (at the end) */
+
+/* This positions our 3D canvas */
+.animationContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1; /* Behind the content */
+  opacity: 0.3; /* Make it subtle */
+}
+
+/* Make sure hero content is on top */
+.heroContent {
+  z-index: 2; 
+  /* ... keep all existing styles for .heroContent ... */
+}
+
+/* We removed the old grid, but if you kept it, you can remove it now */
+.glowingGrid {
+  display: none;
+}

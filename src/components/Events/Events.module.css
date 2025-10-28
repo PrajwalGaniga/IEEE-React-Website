@@ -1,0 +1,531 @@
+/* src/components/Events/Events.module.css */
+.eventsContainer {
+  width: 100%;
+  padding: var(--section-padding) 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-bg-dark) 0%,
+    var(--color-bg-light) 100%
+  );
+  position: relative;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section Header */
+.sectionHeader {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, var(--color-text-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-text-secondary);
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Tab Navigation */
+.tabNavigation {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+}
+
+.tabButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 1rem 2rem;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.tabButton:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.tabButton.active {
+  background: rgba(0, 180, 216, 0.1);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.tabIcon {
+  width: 18px;
+  height: 18px;
+}
+
+/* Events Grid */
+.eventsGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+.eventsGrid.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eventCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  transition: all 0.4s ease;
+  position: relative;
+  animation: fadeInUp 0.6s ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.eventCard:hover {
+  transform: translateY(-8px);
+  border-color: var(--color-accent);
+  box-shadow: 
+    0 20px 40px rgba(0, 180, 216, 0.15),
+    0 0 0 1px rgba(0, 180, 216, 0.1);
+}
+
+.eventCard.upcoming {
+  border-style: dashed;
+  border-color: var(--color-accent);
+  background: rgba(0, 180, 216, 0.05);
+}
+
+/* Event Image */
+.eventImage {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.eventImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.eventCard:hover .eventImage img {
+  transform: scale(1.05);
+}
+
+.eventType {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: rgba(0, 180, 216, 0.9);
+  color: var(--color-bg-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.upcomingBadge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(255, 193, 7, 0.9);
+  color: var(--color-bg-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+/* Event Content */
+.eventContent {
+  padding: 2rem;
+}
+
+.eventHeader {
+  margin-bottom: 1rem;
+}
+
+.eventDate {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.eventIcon {
+  width: 16px;
+  height: 16px;
+}
+
+.eventTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-heading);
+}
+
+.eventDescription {
+  font-size: 0.95rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+/* Event Details */
+.eventDetails {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.detailIcon {
+  width: 16px;
+  height: 16px;
+  color: var(--color-accent);
+}
+
+/* Event Tags */
+.eventTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  background: rgba(0, 180, 216, 0.1);
+  color: var(--color-accent);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Event Button */
+.eventButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 100%;
+  justify-content: center;
+}
+
+.eventButton:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 180, 216, 0.3);
+}
+
+.buttonIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Coming Soon Card */
+.comingSoonCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  border-style: dashed;
+  border-color: var(--color-accent);
+  background: rgba(0, 180, 216, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.comingSoonIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 180, 216, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.csIcon {
+  color: var(--color-accent);
+  width: 32px;
+  height: 32px;
+}
+
+.comingSoonCard h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  margin-bottom: 1rem;
+}
+
+.comingSoonCard p {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 400px;
+}
+
+.comingSoonGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 180, 216, 0.1),
+    transparent
+  );
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+.cardGlow {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 180, 216, 0.1),
+    transparent
+  );
+  transition: left 0.6s ease;
+}
+
+.eventCard:hover .cardGlow {
+  left: 100%;
+}
+
+/* CTA Section */
+.ctaSection {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius);
+  padding: 3rem 2rem;
+}
+
+.ctaTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin-bottom: 1rem;
+  font-family: var(--font-heading);
+}
+
+.ctaText {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 2rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.ctaButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-accent);
+  border: 2px solid var(--color-accent);
+  border-radius: var(--border-radius);
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+.ctaButton:hover {
+  background: var(--color-accent);
+  color: var(--color-bg-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 180, 216, 0.3);
+}
+
+.ctaIcon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .container {
+    padding: 0 2rem;
+  }
+
+  .eventsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .eventDetails {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .eventButton {
+    width: auto;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 3rem;
+  }
+
+  .eventsGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .eventImage {
+    height: 220px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+  .eventsGrid {
+    gap: 3rem;
+  }
+}
+
+/* Small Mobile Optimization */
+@media (max-width: 480px) {
+  .eventsContainer {
+    padding: 3rem 0;
+  }
+
+  .tabNavigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabButton {
+    justify-content: center;
+  }
+
+  .eventContent {
+    padding: 1.5rem;
+  }
+
+  .eventTitle {
+    font-size: 1.25rem;
+  }
+
+  .eventDescription {
+    font-size: 0.9rem;
+  }
+
+  .eventDetails {
+    grid-template-columns: 1fr;
+  }
+
+  .ctaSection {
+    padding: 2rem 1.5rem;
+  }
+
+  .ctaTitle {
+    font-size: 1.25rem;
+  }
+
+  .ctaText {
+    font-size: 0.9rem;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .eventCard {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  
+  .eventCard:hover {
+    transform: none;
+  }
+  
+  .cardGlow,
+  .comingSoonGlow {
+    display: none;
+  }
+  
+  .eventCard:hover .eventImage img {
+    transform: none;
+  }
+  
+  .eventButton:hover,
+  .ctaButton:hover {
+    transform: none;
+  }
+}

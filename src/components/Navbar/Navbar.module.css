@@ -1,0 +1,175 @@
+/* src/components/Navbar/Navbar.module.css */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(14px);
+  background: rgba(13, 17, 23, 0.4);
+  border-bottom: 1px solid rgba(0, 180, 216, 0.15);
+  transition: all 0.4s ease;
+}
+
+/* Scroll effect */
+.scrolled {
+  background: rgba(13, 17, 23, 0.75);
+  box-shadow: 0 0 25px rgba(0, 180, 216, 0.15);
+  backdrop-filter: blur(18px);
+}
+
+.navLogo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navLogo:hover {
+  transform: scale(1.05);
+}
+
+.navLogo img {
+  height: 42px;
+  filter: drop-shadow(0 0 5px rgba(0, 180, 216, 0.5));
+}
+
+.navLogo span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text-primary, #e6e6e6);
+  letter-spacing: 0.5px;
+}
+
+/* --- Desktop Menu --- */
+.navMenu {
+  display: flex;
+  list-style: none;
+  gap: 2.5rem;
+}
+
+.navMenu li a {
+  color: var(--color-text-secondary, #a8a8a8);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+/* Neon glow underline */
+.navMenu li a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent, #00b4d8);
+  box-shadow: 0 0 8px var(--color-accent, #00b4d8);
+  transition: width 0.3s ease;
+}
+
+.navMenu li a:hover {
+  color: var(--color-accent, #00b4d8);
+}
+
+.navMenu li a:hover::after {
+  width: 100%;
+}
+
+/* --- Contact Button --- */
+.contactButton a {
+  background: rgba(0, 180, 216, 0.1);
+  border: 2px solid var(--color-accent, #00b4d8);
+  color: var(--color-accent, #00b4d8);
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(0, 180, 216, 0.15);
+}
+
+.contactButton a:hover {
+  background: var(--color-accent, #00b4d8);
+  color: #0d1117;
+  box-shadow: 0 0 20px var(--color-accent, #00b4d8);
+  transform: scale(1.05);
+}
+
+/* --- Hamburger --- */
+.hamburgerIcon {
+  display: none;
+  font-size: 1.8rem;
+  color: var(--color-text-primary, #e6e6e6);
+  cursor: pointer;
+  z-index: 101;
+}
+
+/* --- Mobile Menu --- */
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: 100vh;
+  background: rgba(13, 17, 23, 0.95);
+  backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  z-index: 100;
+  transition: right 0.4s ease-in-out;
+}
+
+.mobileMenu.active {
+  right: 0;
+}
+
+.mobileNavLinks {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.mobileNavLinks li {
+  margin: 1.2rem 0;
+}
+
+.mobileNavLinks li a {
+  color: var(--color-text-primary, #e6e6e6);
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.mobileNavLinks li a:hover {
+  color: var(--color-accent, #00b4d8);
+  text-shadow: 0 0 10px var(--color-accent, #00b4d8);
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+  .navMenu {
+    display: none;
+  }
+
+  .contactButton {
+    display: none;
+  }
+
+  .hamburgerIcon {
+    display: block;
+  }
+}
