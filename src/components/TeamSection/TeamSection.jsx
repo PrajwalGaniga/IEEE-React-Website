@@ -7,6 +7,8 @@ import { Mail, Github, Linkedin, Award, Users, Calendar } from 'lucide-react';
 import counselorImg from '../../assets/counselor.jpg';
 import chairImg from '../../assets/chair.jpg';
 import secretaryImg from '../../assets/secretary.jpg';
+// --- ADDED THIS LINE ---
+import viceChairImg from '../../assets/vicechair.jpg'; // Add an image for the Vice Chair
 
 // Key Leaders (with photos)
 const keyLeaders = [
@@ -37,6 +39,16 @@ const keyLeaders = [
     linkedin: '#',
     github: '#'
   },
+  // --- ADDED THIS OBJECT ---
+  {
+    name: 'Megha Rai',
+    role: 'Vice Chair',
+    details: '3rd AIDS',
+    img: viceChairImg,
+    email: 'megha@ieee.sit.ac.in', // Placeholder email
+    linkedin: '#',
+    github: '#'
+  },
 ];
 
 // Other Office Bearers
@@ -45,7 +57,7 @@ const teams = [
     title: 'Core Team',
     icon: Users,
     members: [
-      { name: 'Megha Rai', role: 'Vice Chair', details: '3rd AIDS' },
+      // --- REMOVED VICE CHAIR FROM HERE ---
       { name: 'Sinchana S', role: 'Treasurer', details: '3rd AIML' },
     ],
   },

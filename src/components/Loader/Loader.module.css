@@ -1,0 +1,58 @@
+/* src/components/Loader/Loader.module.css */
+
+.loaderContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  
+  /* Use our main dark background */
+  background-color: var(--color-bg-dark);
+  
+  /* Center everything */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* Fade-in animation */
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.logo {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(0, 180, 216, 0.5);
+}
+
+.canvasContainer {
+  width: 200px;
+  height: 200px;
+}
+
+.loadingText {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 2rem;
+  
+  /* Blinking text effect */
+  animation: blink 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes blink {
+  from { opacity: 1; }
+  to { opacity: 0.5; }
+}
